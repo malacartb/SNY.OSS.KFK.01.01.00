@@ -2,11 +2,8 @@ curl https://mirror.nohup.it/apache/kafka/2.4.1/kafka_2.13-2.4.1.tgz -o /home/va
 mkdir -p /home/vagrant/kafka/logs
 tar xfz /home/vagrant/kafka_*.tgz --strip 1 -C /home/vagrant/kafka 
 sudo chown -R vagrant:vagrant /home/vagrant
-echo "export PATH=\$PATH:/home/vagrant/kafka/bin" > /home/vagrant/.bash_profile
+echo "export KAFKA_HOME=/home/vagrant/kafka" >> /home/vagrant/.profile
+echo "export PATH=\$PATH:\$KAFKA_HOME/bin" >> /home/vagrant/.profile
 
 
-sudo cp /vagrant/resources/zookeeper.service /etc/systemd/system/zookeeper.service
-sudo cp /vagrant/resources/kafka.service /etc/systemd/system/kafka.service
 
-sudo systemctl enable kafka
-sudo systemctl start kafka
