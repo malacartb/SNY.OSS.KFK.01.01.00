@@ -4,7 +4,7 @@ NETWORK_PREFIX = "192.168.34."
 
 Vagrant.configure("2") do |config|
     #config.hostmanager.enabled = true
-    config.hostmanager.manage_guest = true
+    #config.hostmanager.manage_guest = true
     config.vm.box = "ubuntu/bionic64"
     (1..KAFKA_NODES).each do |i|
         config.vm.define "kafka-node-#{i}" do |node|
@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
             node.vm.provision :shell, :path => "scripts/configure_zookeeper_cluster.sh", :args => "#{KAFKA_NODES} #{i}"
             node.vm.provision :shell, :path => "scripts/configure_kafka_cluster.sh", :args => "#{KAFKA_NODES} #{i}"
             node.vm.provision :shell, :path => "scripts/start_kafka.sh"
+            #node.vm.provision :reload
             node.vm.provision "shell", inline: "echo 'Node kafka-node-#{i} is up and running!'"
             node.vm.hostname = "kafka-node-#{i}"
             node.vm.provider :virtualbox do |vb|
