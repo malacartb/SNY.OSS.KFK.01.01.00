@@ -1,3 +1,4 @@
+source /vagrant/scripts/.env
 export NUM_NODES=$1
 export CURRENT_NODE=$2
 export ZOOKEEPER_CLUSTER_ADDRESS_LIST=""

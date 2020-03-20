@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
             node.vm.provision :shell, :path => "scripts/install_kafka.sh"
             node.vm.provision :shell, :path => "scripts/configure_kafka_cluster.sh", :args => "#{KAFKA_NODES} #{i}"
             node.vm.provision :shell, :path => "scripts/start_kafka.sh"
-            node.vm.provision "shell", inline: "Node kafka-node-#{i} is up & running!"
+            node.vm.provision "shell", inline: "Node kafka-node-#{i} is up and running!"
             node.vm.hostname = "kafka-node-#{i}"
             node.vm.provider :virtualbox do |vb|
                 vb.name = "kafka-node-#{i}"
