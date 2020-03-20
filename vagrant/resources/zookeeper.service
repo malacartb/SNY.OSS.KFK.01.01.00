@@ -7,10 +7,8 @@ Type=simple
 User=vagrant
 ExecStart=/home/vagrant/kafka/bin/zookeeper-server-start.sh /home/vagrant/kafka/config/zookeeper.properties
 ExecStop=/home/vagrant/kafka/bin/zookeeper-server-stop.sh
-Restart=on-abnormal
-RestartSec=90
-StartLimitInterval=400
-StartLimitBurst=1000
+Restart=on-failure
+RestartSec=30s
 
 [Install]
 WantedBy=multi-user.target
