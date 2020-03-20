@@ -9,6 +9,7 @@ Vagrant.configure("2") do |config|
     (1..KAFKA_NODES).each do |i|
         config.vm.define "kafka-node-#{i}" do |node|
             node.vm.network "private_network", ip: NETWORK_PREFIX + "#{i + 100}"
+            node.vm.provision :shell, :path => "scripts/fix_bad_hostname_resolution.sh"
             node.vm.provision :shell, :path => "scripts/install_jdk.sh"
             node.vm.provision :shell, :path => "scripts/install_kafka.sh"
             node.vm.provision :shell, :path => "scripts/configure_zookeeper_cluster.sh", :args => "#{KAFKA_NODES} #{i}"
