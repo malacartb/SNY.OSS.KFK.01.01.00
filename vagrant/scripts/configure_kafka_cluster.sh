@@ -20,4 +20,4 @@ done
 perl -p -i -e "s/broker\.id=0/broker\.id=$CURRENT_NODE/g" $KAFKA_HOME/config/server.properties
 perl -p -i -e "s/log\.dirs=\/tmp\/kafka-logs/log\.dirs=\/home\/vagrant\/kafka\/logs/g" $KAFKA_HOME/config/server.properties
 perl -p -i -e "s/zookeeper\.connect=localhost:2181/zookeeper\.connect=$ZOOKEEPER_CLUSTER_ADDRESS_LIST/g" $KAFKA_HOME/config/server.properties
-perl -p -i -e 's/#listeners=PLAINTEXT:\/\/:9092/listeners=PLAINTEXT:\/\/:9092/g' $KAFKA_HOME/config/server.properties
+c
