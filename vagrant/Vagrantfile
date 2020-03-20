@@ -3,13 +3,13 @@ KAFKA_NODES = 3
 NETWORK_PREFIX = "192.168.34."
 
 Vagrant.configure("2") do |config|
-    config.hostmanager.enabled = true
+    #config.hostmanager.enabled = true
     config.hostmanager.manage_guest = true
     config.vm.box = "ubuntu/bionic64"
     (1..KAFKA_NODES).each do |i|
         config.vm.define "kafka-node-#{i}" do |node|
             node.vm.network "private_network", ip: NETWORK_PREFIX + "#{i + 100}"
-            node.vm.provision :shell, :path => "scripts/fix_bad_hostname_resolution.sh"
+            node.vm.provision :shell, :path => "scripts/fix_bad_hostname_resolution.sh", :args => "#{KAFKA_NODES} #{i}"
             node.vm.provision :shell, :path => "scripts/install_jdk.sh"
             node.vm.provision :shell, :path => "scripts/install_kafka.sh"
             node.vm.provision :shell, :path => "scripts/configure_zookeeper_cluster.sh", :args => "#{KAFKA_NODES} #{i}"
