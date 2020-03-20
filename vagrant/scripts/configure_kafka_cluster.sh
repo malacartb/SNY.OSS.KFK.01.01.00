@@ -15,7 +15,6 @@ do
         ZOOKEEPER_CLUSTER_ADDRESS_LIST="$ZOOKEEPER_CLUSTER_ADDRESS_LIST,"
     fi
     ZOOKEEPER_CLUSTER_ADDRESS_LIST=${ZOOKEEPER_CLUSTER_ADDRESS_LIST}kafka-node-$i:2181
-    echo $ZOOKEEPER_CLUSTER_ADDRESS_LIST
 done
 
 perl -p -i -e "s/broker\.id=0/broker\.id=$CURRENT_NODE/g" $KAFKA_HOME/config/server.properties
